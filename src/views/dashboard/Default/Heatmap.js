@@ -9,7 +9,8 @@ const Renderer = ({
   width,
   height,
   setHoveredCell,
-  data
+  data,
+  onOpen
 }) => {
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -70,6 +71,7 @@ const Renderer = ({
           });
         }}
         onMouseLeave={() => setHoveredCell(null)}
+        onClick={onOpen} // Added click event handler
         cursor="pointer"
       />
     );
@@ -172,7 +174,7 @@ const TooltipRow = ({ label, value }) => (
   </div>
 );
 
-const Heatmap = ({ width, height, data }) => {
+const Heatmap = ({ width, height, data, onOpen }) => {
   const [hoveredCell, setHoveredCell] = useState(null);
 
   return (
@@ -182,8 +184,9 @@ const Heatmap = ({ width, height, data }) => {
         height={height}
         data={data}
         setHoveredCell={setHoveredCell}
+        onOpen={onOpen}
       />
-      <Tooltip interactionData={hoveredCell} width={width} height={height} />
+      <Tooltip interactionData={hoveredCell} width={width} height={height} onOpen={onOpen} />
     </div>
   );
 };

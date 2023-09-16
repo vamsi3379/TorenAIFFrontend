@@ -14,7 +14,9 @@ import {
   RadioGroup,
   Slider,
   Tooltip,
-  Typography
+  Switch,
+  Typography,
+  Divider
 } from '@mui/material';
 import { IconSettings } from '@tabler/icons';
 
@@ -26,6 +28,7 @@ import SubCard from 'ui-component/cards/SubCard';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
 import { gridSpacing } from 'store/constant';
+import { useClassificationsContext } from '../ClassificationsProvider';
 
 // concat 'px'
 function valueText(value) {
@@ -38,6 +41,7 @@ const Customization = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const customization = useSelector((state) => state.customization);
+  const { selectedClassifications, toggleClassification } = useClassificationsContext();
 
   // drawer on/off
   const [open, setOpen] = useState(false);
@@ -71,6 +75,7 @@ const Customization = () => {
 
   // state - font family
   const [fontFamily, setFontFamily] = useState(initialFont);
+  const [classifications, setClassifications] = useState(["People","Rain","Vehicles","Umbrella"])
   useEffect(() => {
     let newFont;
     switch (fontFamily) {
@@ -129,86 +134,28 @@ const Customization = () => {
         }}
       >
         <PerfectScrollbar component="div">
-          <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
-            <Grid item xs={12}>
-              {/* font family */}
-              <SubCard title="Font Family">
-                <FormControl>
-                  <RadioGroup
-                    aria-label="font-family"
-                    value={fontFamily}
-                    onChange={(e) => setFontFamily(e.target.value)}
-                    name="row-radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="Roboto"
-                      control={<Radio />}
-                      label="Roboto"
-                      sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
-                      }}
-                    />
-                    <FormControlLabel
-                      value="Poppins"
-                      control={<Radio />}
-                      label="Poppins"
-                      sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
-                      }}
-                    />
-                    <FormControlLabel
-                      value="Inter"
-                      control={<Radio />}
-                      label="Inter"
-                      sx={{
-                        '& .MuiSvgIcon-root': { fontSize: 28 },
-                        '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
-                      }}
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </SubCard>
-            </Grid>
-            <Grid item xs={12}>
-              {/* border radius */}
-              <SubCard title="Border Radius">
-                <Grid item xs={12} container spacing={2} alignItems="center" sx={{ mt: 2.5 }}>
-                  <Grid item>
-                    <Typography variant="h6" color="secondary">
-                      4px
-                    </Typography>
-                  </Grid>
-                  <Grid item xs>
-                    <Slider
-                      size="small"
-                      value={borderRadius}
-                      onChange={handleBorderRadius}
-                      getAriaValueText={valueText}
-                      valueLabelDisplay="on"
-                      aria-labelledby="discrete-slider-small-steps"
-                      marks
-                      step={2}
-                      min={4}
-                      max={24}
-                      color="secondary"
-                      sx={{
-                        '& .MuiSlider-valueLabel': {
-                          color: 'secondary.light'
-                        }
-                      }}
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6" color="secondary">
-                      24px
-                    </Typography>
-                  </Grid>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography variant="h3" sx={{color:"#673ab7"}}>Classifications</Typography>
+            <Divider/>
+            <Grid container spacing={gridSpacing} sx={{ p: 3 }}>
+              {classifications.map((classification, index) => (
+                <Grid item xs={12} key={index}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        color="secondary"
+                        checked={selectedClassifications.includes(classification)}
+                        onChange={() => toggleClassification(classification)}
+                      />
+                    }
+                    label={classification}
+                    key={index}
+                  />
+                  <Divider sx={{ backgroundColor: 'black' }} />
                 </Grid>
-              </SubCard>
+              ))}
             </Grid>
-          </Grid>
+          </div>
         </PerfectScrollbar>
       </Drawer>
     </>

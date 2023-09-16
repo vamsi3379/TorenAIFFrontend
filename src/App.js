@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-
+import { ChakraProvider } from "@chakra-ui/react";
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
@@ -12,6 +12,8 @@ import themes from 'themes';
 // project imports
 import NavigationScroll from 'layout/NavigationScroll';
 
+
+import { ClassificationsProvider } from './layout/ClassificationsProvider'
 // ==============================|| APP ||============================== //
 
 const App = () => {
@@ -19,12 +21,16 @@ const App = () => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={themes(customization)}>
-        <CssBaseline />
-        <NavigationScroll>
-          <Routes />
-        </NavigationScroll>
-      </ThemeProvider>
+      <ClassificationsProvider>
+        <ThemeProvider theme={themes(customization)}>
+          <CssBaseline />
+          
+          <NavigationScroll>
+              <Routes />
+          </NavigationScroll>
+          
+        </ThemeProvider>
+        </ClassificationsProvider>
     </StyledEngineProvider>
   );
 };
