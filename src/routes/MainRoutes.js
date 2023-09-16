@@ -7,7 +7,7 @@ import Loadable from 'ui-component/Loadable';
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 const DashboardScatter = Loadable(lazy(() => import('views/Scatter/Default')));
-const DashboardLine = Loadable(lazy(() => import('views/Line/Default')));
+const DashboardLine = Loadable(lazy(() => import('views/LineGraph/Default')));
 const DashboardPie = Loadable(lazy(() => import('views/Pie/Default')));
 
 
