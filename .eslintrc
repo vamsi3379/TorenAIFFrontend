@@ -67,18 +67,6 @@
         "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ],
-    "no-unused-vars": "warn",
-    "prettier/prettier": [
-      "warn",
-      {
-        "bracketSpacing": true,
-        "printWidth": 140,
-        "singleQuote": true,
-        "trailingComma": "none",
-        "tabWidth": 2,
-        "useTabs": false,
-        "endOfLine": "auto"
-      }
-    ]
+    "no-unused-vars": "warn"
   }
 }
