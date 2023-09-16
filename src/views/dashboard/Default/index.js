@@ -34,7 +34,7 @@ import dayjs from 'dayjs';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const nCol = 20;
-const nRow = 5;
+const nRow = 20;
 
 const alphabet = [
   "A",
