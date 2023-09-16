@@ -3,7 +3,7 @@ import styles from "./tooltip.module.css";
 import { useMemo } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 20, right: 20, bottom: 20, left: 20 };
+const MARGIN = { top: 20, right: 20, bottom: 80, left: 80 };
 
 const Renderer = ({
   setHoveredCell,
@@ -39,8 +39,10 @@ const Renderer = ({
 
   var colorScale = d3
     .scaleSequential()
-    .interpolator(d3.interpolateInferno)
-    .domain([min, max]);
+    .interpolator(d3.interpolateGreens)
+    .domain([0, max]);
+
+  const squareSize = Math.min(xScale.bandwidth(), yScale.bandwidth());
 
   const allShapes = data.map((d, i) => {
     const x = xScale(d.x);
@@ -54,10 +56,10 @@ const Renderer = ({
       <rect
         key={i}
         r={4}
-        x={xScale(d.x)}
-        y={yScale(d.y)}
-        width={xScale.bandwidth()}
-        height={yScale.bandwidth()}
+        x={x + (xScale.bandwidth() - squareSize) / 2}
+        y={y + (yScale.bandwidth() - squareSize) / 2}
+        width={squareSize}
+        height={squareSize}
         opacity={1}
         fill={colorScale(d.value)}
         rx={5}
@@ -87,15 +89,16 @@ const Renderer = ({
 
     return (
       <text
-        key={i}
-        x={x + xScale.bandwidth() / 2}
-        y={boundsHeight + 10}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontSize={10}
-      >
-        {name}
-      </text>
+      key={i}
+      x={x + xScale.bandwidth() / 2}
+      y={boundsHeight + 10}
+      
+      
+      fontSize={10}
+      transform={`rotate(90 ${x + xScale.bandwidth() / 2} ${boundsHeight + 10})`}
+    >
+      {name}
+    </text>
     );
   });
 
