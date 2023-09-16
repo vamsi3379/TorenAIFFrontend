@@ -15,6 +15,9 @@ const Renderer = ({
     const handleResize = () => {
       setAvailableWidth(window.innerWidth - 260); // Recalculate available width
     };
+    if (availableWidth < 850){
+      setAvailableWidth(availableWidth+260)
+    }
 
     window.addEventListener("resize", handleResize);
 
