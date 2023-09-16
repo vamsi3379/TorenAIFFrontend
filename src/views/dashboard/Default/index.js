@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { ChakraProvider, HStack } from "@chakra-ui/react";
 import {
   Modal,
@@ -25,16 +25,15 @@ import {
 // import { Grid } from '@mui/material';
 
 import * as React from 'react';
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import Heatmap from "./Heatmap";
-import { useClassificationsContext } from '../../../layout/ClassificationsProvider'; // Import the context
+import { useClassificationsContext } from '../../../layout/ClassificationsProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import dayjs from 'dayjs';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-const nCol = 10;
+const nCol = 20;
 const nRow = 5;
 
 const alphabet = [
@@ -88,19 +87,43 @@ const Dashboard = () => {
     return selectedClassifications.includes(classification);
   };
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [fromtime, setFromTime] = React.useState(dayjs('2022-04-17T15:30'));
+  const [toTime, setToTime] = React.useState(dayjs('2022-04-17T15:30'));
 
 
   return (
     // add here shellhacks
     <>
+    <Grid sx={{justifyContent:"center",alignItems:"center"}}>
     <Typography component="legend">Selected Classifications:</Typography>
         {selectedClassifications.map((classification, index) => (
           <Typography key={index}>{classification}</Typography>
         ))}
+      <Grid container sx={{ marginTop: "30px", justifyContent:"center",alignItems:"center" }}>
+        <Grid item sx={{ marginRight: "16px" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateTimePicker
+              label="From Time"
+              value={fromtime}
+              onChange={(newValue) => setFromTime(newValue)}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateTimePicker
+              label="To Time"
+              value={toTime}
+              onChange={(newValue) => setToTime(newValue)}
+            />
+          </LocalizationProvider>
+        </Grid>
+      </Grid>
       
-
-    <Heatmap width={700} height={400} data={data} onOpen={onOpen}/>     
+    <Flex sx={{justifyContent:"center",alignItems:"center", width:"100%"}}>
+      <Heatmap data={data} onOpen={onOpen}/>     
+    </Flex>
+    
     <ChakraProvider>
     {/* <Button onClick={onOpen}>Open Modal</Button> */}
       <Modal
@@ -159,6 +182,7 @@ const Dashboard = () => {
         </ModalContent>
       </Modal>
     </ChakraProvider>
+    </Grid>
     </>
   );
 };

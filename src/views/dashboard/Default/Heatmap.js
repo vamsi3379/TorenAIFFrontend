@@ -3,15 +3,16 @@ import styles from "./tooltip.module.css";
 import { useMemo } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 10, right: 50, bottom: 30, left: 50 };
+const MARGIN = { top: 20, right: 20, bottom: 20, left: 20 };
 
 const Renderer = ({
-  width,
-  height,
   setHoveredCell,
   data,
   onOpen
 }) => {
+  const screenWidth = window.innerWidth;
+  const width = screenWidth < 1000 ? screenWidth - MARGIN.left - MARGIN.right : 1000 - MARGIN.left - MARGIN.right;
+  const height = 600 - MARGIN.top - MARGIN.bottom;
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
