@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./tooltip.module.css";
 import { useMemo } from "react";
 import * as d3 from "d3";
@@ -10,9 +10,23 @@ const Renderer = ({
   data,
   onOpen
 }) => {
-  const screenWidth = window.innerWidth;
-  const width = screenWidth < 1000 ? screenWidth - MARGIN.left - MARGIN.right : 1000 - MARGIN.left - MARGIN.right;
-  const height = 600 - MARGIN.top - MARGIN.bottom;
+  const [availableWidth, setAvailableWidth] = useState(window.innerWidth - 260);
+  useEffect(() => {
+    const handleResize = () => {
+      setAvailableWidth(window.innerWidth - 260); // Recalculate available width
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
+  const width = availableWidth;
+  const height = 800 - MARGIN.top - MARGIN.bottom;
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
