@@ -9,6 +9,7 @@ const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')))
 const DashboardScatter = Loadable(lazy(() => import('views/Scatter/Default')));
 const DashboardLine = Loadable(lazy(() => import('views/LineGraph/Default')));
 const DashboardPie = Loadable(lazy(() => import('views/Pie/Default')));
+const TableData = Loadable(lazy(() => import('views/Table/Default')));
 
 
 // utilities routing
@@ -51,6 +52,10 @@ const MainRoutes = {
     {
       path: '/pieplot',
       element: <DashboardPie />
+    },
+    {
+      path: '/table',
+      element: <TableData/>
     },
     {
       path: 'utils',

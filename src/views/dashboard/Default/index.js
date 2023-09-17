@@ -33,6 +33,8 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import { min } from 'd3';
 import Table from './Table'
+import Linegraph from "../../LineGraph/Default"
+import Pagination from '@mui/material/Pagination';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
 // const nCol = 20;
@@ -70,156 +72,156 @@ import Table from './Table'
 // }
 // console.log(data)
 
-const totalData = [
-  {
-    "buildings": "10",
-    "cars": "50",
-    "handbags": "0",
-    "people": "31",
-    "timestamps": "Mon, 11 Sep 2023 18:51:38 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "10",
-    "timestamps": "Mon, 11 Sep 2023 18:52:39 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "13",
-    "timestamps": "Mon, 11 Sep 2023 18:52:40 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "1",
-    "timestamps": "Mon, 11 Sep 2023 18:56:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "100",
-    "timestamps": "Mon, 11 Sep 2023 18:12:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "40",
-    "timestamps": "Mon, 11 Sep 2023 18:54232:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "20",
-    "timestamps": "Mon, 1132 Sep 2023 18:08:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "100",
-    "timestamps": "Mon, 11 Sep 2023 18:234:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "10",
-    "timestamps": "Mon, 11 Sep 2023 34:55:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "10",
-    "timestamps": "Mon, 11 Sep 2023 18:43:40 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "50",
-    "handbags": "0",
-    "people": "31",
-    "timestamps": "Mon, 11 Sep 2023 18:4432:38 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "10",
-    "timestamps": "Mon, 11 Sep 2023 18:1`:39 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "13",
-    "timestamps": "Mon, 11 Sep 2023 18:213:40 GMT",
-    "umbrellas": "0"
-  },
-  {
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "1",
-    "timestamps": "Mon, 11 Sep 2023 1`2:56:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "100",
-    "timestamps": "Mon, 11 Sep 2023 18:123:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "40",
-    "timestamps": "Mon, 11 Sep 2023 18:1232:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "20",
-    "timestamps": "Mon, 11 Sep 2023 18:21:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "100",
-    "timestamps": "Mon, 11 Sep 2023 18:32:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "10",
-    "timestamps": "Mon, 11 Sep 2023 10:55:40 GMT",
-    "umbrellas": "0"
-  },{
-    "buildings": "10",
-    "cars": "51",
-    "handbags": "0",
-    "people": "10",
-    "timestamps": "Mon, 11 Sep 2023 11:51:40 GMT",
-    "umbrellas": "0"
-  }
-];
+// const totalData = [
+//   {
+//     "buildings": "10",
+//     "cars": "50",
+//     "handbags": "0",
+//     "people": "31",
+//     "timestamps": "Mon, 11 Sep 2023 18:51:38 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "10",
+//     "timestamps": "Mon, 11 Sep 2023 18:52:39 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "13",
+//     "timestamps": "Mon, 11 Sep 2023 18:52:40 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "1",
+//     "timestamps": "Mon, 11 Sep 2023 18:56:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "100",
+//     "timestamps": "Mon, 11 Sep 2023 18:12:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "40",
+//     "timestamps": "Mon, 11 Sep 2023 18:54232:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "20",
+//     "timestamps": "Mon, 1132 Sep 2023 18:08:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "100",
+//     "timestamps": "Mon, 11 Sep 2023 18:234:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "10",
+//     "timestamps": "Mon, 11 Sep 2023 34:55:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "10",
+//     "timestamps": "Mon, 11 Sep 2023 18:43:40 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "50",
+//     "handbags": "0",
+//     "people": "31",
+//     "timestamps": "Mon, 11 Sep 2023 18:4432:38 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "10",
+//     "timestamps": "Mon, 11 Sep 2023 18:1`:39 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "13",
+//     "timestamps": "Mon, 11 Sep 2023 18:213:40 GMT",
+//     "umbrellas": "0"
+//   },
+//   {
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "1",
+//     "timestamps": "Mon, 11 Sep 2023 1`2:56:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "100",
+//     "timestamps": "Mon, 11 Sep 2023 18:123:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "40",
+//     "timestamps": "Mon, 11 Sep 2023 18:1232:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "20",
+//     "timestamps": "Mon, 11 Sep 2023 18:21:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "100",
+//     "timestamps": "Mon, 11 Sep 2023 18:32:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "10",
+//     "timestamps": "Mon, 11 Sep 2023 10:55:40 GMT",
+//     "umbrellas": "0"
+//   },{
+//     "buildings": "10",
+//     "cars": "51",
+//     "handbags": "0",
+//     "people": "10",
+//     "timestamps": "Mon, 11 Sep 2023 11:51:40 GMT",
+//     "umbrellas": "0"
+//   }
+// ];
 
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
@@ -229,8 +231,9 @@ const Dashboard = () => {
   const [toTime, setToTime] = React.useState(dayjs());
   const [minDateTime, setMinDateTime] = React.useState(dayjs().format('YYYY-MM-DDTHH:mm'));
   const [maxDateTime, setMaxDateTime] = React.useState(dayjs().format('YYYY-MM-DDTHH:mm'));
-  // const [data, setData] = React.useState([])
+  const [data, setData] = React.useState([])
   const [showData, setShowData] = React.useState(true)
+  const [preData, setPreData] = React.useState([])
 
   const fromTimeChange = (newValue) => {
     setFromTime(dayjs(newValue))
@@ -243,8 +246,7 @@ const toTimeChange = (newValue) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://172.20.10.8:5000/api/timelines");
-        console.log(response.data);
+        const response = await axios.get("http://localhost:5000/api/timelines");
 
         //output:{ending_time: '2023-09-11T21:25', starting_time: '2023-09-11T18:51'}
         const { starting_time, ending_time } = response.data;
@@ -270,34 +272,35 @@ const toTimeChange = (newValue) => {
     const b=toTime
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://172.20.10.8:5000/api/data?",{
+        const response = await axios.get("http://localhost:5000/api/timepersecond?",{
           params: {
             start_timestamp: a.format("YYYY-MM-DD HH:mm"),
           end_timestamp: b.format("YYYY-MM-DD HH:mm"), 
           },
         });
-        console.log(response.data);
+        console.log(response.data.length);
         const transformedData = [];
 
-        // const totalData = response.data
+        const totalData = response.data.slice(0,50)
+        setPreData(totalData);
         
 
 
         for (let i = 0; i < totalData.length; i++) {
           const timestamp = totalData[i].timestamps;
+          const img_url = totalData[i].img_url;
           delete totalData[i].timestamps;
+          delete totalData[i].img_url;
         
           for (let key in totalData[i]) {
             transformedData.push({
               x: timestamp,
               y: key,
-              value: totalData[i][key]
+              value: totalData[i][key],
+              img_url: img_url
             });
           }
         }
-      
-
-
   
 
     console.log(transformedData);
@@ -350,11 +353,21 @@ const toTimeChange = (newValue) => {
             <Button variant="contained" onClick={viewDataClick}>View Data</Button>
           </Grid>
       </Grid>
-    {showData&&(
-    <Flex sx={{justifyContent:"center",alignItems:"center", width:"100%"}}>
-      <Heatmap data={totalData} onOpen={onOpen}/>     
-    </Flex>
-    )}
+          {showData&&(
+            <Flex sx={{marginTop:"10px", justifyContent:"center",alignItems:"center", width:"100%"}}>
+              <Pagination count={4} showFirstButton showLastButton /> 
+            </Flex>
+          )}
+          
+          {showData&&(
+            <>
+        <Grid sx={{justifyContent:"center",alignItems:"center"}}>
+          <Flex sx={{justifyContent:"center",alignItems:"center", width:"100%"}}>
+            <Heatmap data={data} onOpen={onOpen}/>     
+          </Flex>
+        </Grid>
+        </>
+        )}
    
     
     <ChakraProvider>
@@ -416,7 +429,7 @@ const toTimeChange = (newValue) => {
       </Modal>
     </ChakraProvider>
     </Grid>
-    <Table data={totalData}/>
+    <Linegraph data={preData}/>
     </>
   );
 };

@@ -1,8 +1,8 @@
 // assets
-import { IconDashboard,IconChartAreaLine,IconChartCircles,IconChartBubble } from '@tabler/icons';
+import { IconDashboard,IconChartAreaLine,IconChartCircles,IconChartBubble, IconBrandTabler } from '@tabler/icons';
 
 // constant
-const icons = { IconDashboard,IconChartAreaLine,IconChartCircles,IconChartBubble };
+const icons = { IconDashboard,IconChartAreaLine,IconChartCircles,IconChartBubble, IconBrandTabler };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -41,6 +41,14 @@ const dashboard = {
       type: 'item',
       url: '/pieplot',
       icon: icons.IconChartCircles,
+      breadcrumbs: false
+    },
+    {
+      id: 'table-data',
+      title: 'Table',
+      type: 'item',
+      url: '/table',
+      icon: icons.IconBrandTabler,
       breadcrumbs: false
     },
   ]
