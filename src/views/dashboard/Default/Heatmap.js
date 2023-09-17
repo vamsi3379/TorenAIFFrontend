@@ -3,7 +3,7 @@ import styles from "./tooltip.module.css";
 import { useMemo } from "react";
 import * as d3 from "d3";
 
-const MARGIN = { top: 20, right: 20, bottom: 80, left: 80 };
+const MARGIN = { top: 20, right: 20, bottom: 160, left: 80 };
 
 const Renderer = ({
   setHoveredCell,

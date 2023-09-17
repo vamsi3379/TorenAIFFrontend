@@ -34,50 +34,40 @@ import axios from 'axios';
 import { min } from 'd3';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-// const nCol = 20;
-// const nRow = 20;
+const nCol = 20;
+const nRow = 20;
 
-// const alphabet = [
-//   "A",
-//   "B",
-//   "C",
-//   "Df",
-//   "Edfvfdfsvdfvdvf",
-//   "F",
-//   "G",
-//   "H",
-//   "I",
-//   "J",
-//   "K",
-//   "L",
-//   "M",
-//   "N",
-//   "O",
-//   "Pwsdc,kmneww,md",
-//   "Q",
-//   "R",
-//   "S",
-//   "T",
-//   "U",
-//   "V",
-//   "W",
-//   "X",
-//   "Y",
-//   "Z"
-// ];
+const alphabet = [
+  "A",
+  "B",
+  "C",
+  "Df",
+  "Edfvfdfsvdfvdvf",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "Pwsdc,kmneww,md",
+];
 
-// let data = [];
+let data = [];
 
-// for (let x = 0; x < nCol; x++) {
-//   for (let y = 0; y < nRow; y++) {
-//     data.push({
-//       x: alphabet[x],
-//       y: alphabet[y],
-//       value: Math.random() * 40
-//     });
-//   }
-// }
-// console.log(data)
+for (let x = 0; x < nCol; x++) {
+  for (let y = 0; y < nRow; y++) {
+    data.push({
+      x: alphabet[x],
+      y: alphabet[y],
+      value: Math.random() * 40
+    });
+  }
+}
+console.log(data)
 
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
@@ -87,8 +77,8 @@ const Dashboard = () => {
   const [toTime, setToTime] = React.useState(dayjs());
   const [minDateTime, setMinDateTime] = React.useState(dayjs().format('YYYY-MM-DDTHH:mm'));
   const [maxDateTime, setMaxDateTime] = React.useState(dayjs().format('YYYY-MM-DDTHH:mm'));
-  const [data, setData] = React.useState([])
-  const [showData, setShowData] = React.useState(false)
+  // const [data, setData] = React.useState([])
+  const [showData, setShowData] = React.useState(true)
 
   const fromTimeChange = (newValue) => {
     setFromTime(dayjs(newValue))
@@ -137,17 +127,175 @@ const toTimeChange = (newValue) => {
         console.log(response.data);
         const transformedData = [];
 
-        response.data.forEach((item) => {
-        const timestamp = item.timestamps;
-        delete item.timestamps;
+        // const totalData = response.data
+        const totalData = [
+          {
+            "buildings": "10",
+            "cars": "50",
+            "handbags": "0",
+            "people": "31",
+            "timestamps": "Mon, 11 Sep 2023 18:51:38 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "10",
+            "timestamps": "Mon, 11 Sep 2023 18:52:39 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "13",
+            "timestamps": "Mon, 11 Sep 2023 18:52:40 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "1",
+            "timestamps": "Mon, 11 Sep 2023 18:56:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "100",
+            "timestamps": "Mon, 11 Sep 2023 18:12:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "40",
+            "timestamps": "Mon, 11 Sep 2023 18:54232:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "20",
+            "timestamps": "Mon, 1132 Sep 2023 18:08:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "100",
+            "timestamps": "Mon, 11 Sep 2023 18:234:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "10",
+            "timestamps": "Mon, 11 Sep 2023 34:55:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "10",
+            "timestamps": "Mon, 11 Sep 2023 18:43:40 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "50",
+            "handbags": "0",
+            "people": "31",
+            "timestamps": "Mon, 11 Sep 2023 18:4432:38 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "10",
+            "timestamps": "Mon, 11 Sep 2023 18:1`:39 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "13",
+            "timestamps": "Mon, 11 Sep 2023 18:213:40 GMT",
+            "umbrellas": "0"
+          },
+          {
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "1",
+            "timestamps": "Mon, 11 Sep 2023 1`2:56:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "100",
+            "timestamps": "Mon, 11 Sep 2023 18:123:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "40",
+            "timestamps": "Mon, 11 Sep 2023 18:1232:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "20",
+            "timestamps": "Mon, 11 Sep 2023 18:21:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "100",
+            "timestamps": "Mon, 11 Sep 2023 18:32:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "10",
+            "timestamps": "Mon, 11 Sep 2023 10:55:40 GMT",
+            "umbrellas": "0"
+          },{
+            "buildings": "10",
+            "cars": "51",
+            "handbags": "0",
+            "people": "10",
+            "timestamps": "Mon, 11 Sep 2023 11:51:40 GMT",
+            "umbrellas": "0"
+          }
+        ];
 
-        for (const key in item) {
-          transformedData.push({
-            timestamp,
-            [key]: item[key]
-          });
+
+        for (let i = 0; i < totalData.length; i++) {
+          const timestamp = totalData[i].timestamps;
+          delete totalData[i].timestamps;
+        
+          for (let key in totalData[i]) {
+            transformedData.push({
+              x: timestamp,
+              y: key,
+              value: totalData[i][key]
+            });
+          }
         }
-      });
+      
+
+
+  
 
     console.log(transformedData);
     setData(transformedData)
