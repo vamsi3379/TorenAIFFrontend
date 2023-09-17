@@ -146,6 +146,7 @@ const BarPlot = () => {
 
   return (
     <>
+    <div style={{justifyContent:"center"}}>
       <svg ref={svgRef}></svg>
       <div
         ref={tooltipRef}
@@ -158,6 +159,7 @@ const BarPlot = () => {
           borderRadius: '20px',
         }}
       ></div>
+    </div>
     </>
   );
 };

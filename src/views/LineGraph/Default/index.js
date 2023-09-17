@@ -1,6 +1,6 @@
 import React from 'react';
 import Chart from "react-apexcharts";
-
+import { Flex, Grid } from "@chakra-ui/react";
 
 
 export default function Linegraph() {
@@ -24,8 +24,13 @@ export default function Linegraph() {
     }
   ];
 
-  return <Chart options={options} series={series} type="area" />;
-  }
+  return( 
+    <div style={{justifyContent:"center"}}>
+      <Chart options={options} series={series} type="area" />;  
+    </div>
+    
+  
+  )}
 
 
 
