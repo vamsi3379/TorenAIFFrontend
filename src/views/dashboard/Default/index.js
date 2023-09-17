@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Button } from '@mui/material';
 import { ChakraProvider, HStack } from "@chakra-ui/react";
 import {
   Modal,
@@ -9,7 +9,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
   Text,
   Image,
   useDisclosure,
@@ -35,49 +34,50 @@ import axios from 'axios';
 import { min } from 'd3';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-const nCol = 20;
-const nRow = 20;
+// const nCol = 20;
+// const nRow = 20;
 
-const alphabet = [
-  "A",
-  "B",
-  "C",
-  "Df",
-  "Edfvfdfsvdfvdvf",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "Pwsdc,kmneww,md",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z"
-];
+// const alphabet = [
+//   "A",
+//   "B",
+//   "C",
+//   "Df",
+//   "Edfvfdfsvdfvdvf",
+//   "F",
+//   "G",
+//   "H",
+//   "I",
+//   "J",
+//   "K",
+//   "L",
+//   "M",
+//   "N",
+//   "O",
+//   "Pwsdc,kmneww,md",
+//   "Q",
+//   "R",
+//   "S",
+//   "T",
+//   "U",
+//   "V",
+//   "W",
+//   "X",
+//   "Y",
+//   "Z"
+// ];
 
-let data = [];
+// let data = [];
 
-for (let x = 0; x < nCol; x++) {
-  for (let y = 0; y < nRow; y++) {
-    data.push({
-      x: alphabet[x],
-      y: alphabet[y],
-      value: Math.random() * 40
-    });
-  }
-}
+// for (let x = 0; x < nCol; x++) {
+//   for (let y = 0; y < nRow; y++) {
+//     data.push({
+//       x: alphabet[x],
+//       y: alphabet[y],
+//       value: Math.random() * 40
+//     });
+//   }
+// }
+// console.log(data)
 
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
@@ -87,12 +87,14 @@ const Dashboard = () => {
   const [toTime, setToTime] = React.useState(dayjs());
   const [minDateTime, setMinDateTime] = React.useState(dayjs().format('YYYY-MM-DDTHH:mm'));
   const [maxDateTime, setMaxDateTime] = React.useState(dayjs().format('YYYY-MM-DDTHH:mm'));
+  const [data, setData] = React.useState([])
+  const [showData, setShowData] = React.useState(false)
 
   const fromTimeChange = (newValue) => {
-    setFromTime(dayjs(newValue, "YYYY-MM-DDTHH:mm"))
+    setFromTime(dayjs(newValue))
 };
 const toTimeChange = (newValue) => {
-    setToTime(dayjs(newValue, "YYYY-MM-DDTHH:mm"))
+    setToTime(dayjs(newValue))
 };
 
 
@@ -101,14 +103,14 @@ const toTimeChange = (newValue) => {
       try {
         const response = await axios.get("http://172.20.10.8:5000/api/timelines");
         console.log(response.data);
-    
-        // setMinDateTime(response.data.starting_date)
-        // setMaxDateTime(response.data.ending_date)
-        // console.log("mindatetime",minDateTime)
-        // console.log("maxdatetime",maxDateTime)
-        // setFromTime(dayjs(response.data.starting_date, "YYYY-MM-DDTHH:mm"))
-        // setToTime(dayjs(response.data.ending_date, "YYYY-MM-DDTHH:mm"))
 
+        //output:{ending_time: '2023-09-11T21:25', starting_time: '2023-09-11T18:51'}
+        const { starting_time, ending_time } = response.data;
+
+        setFromTime(dayjs(starting_time));
+        setToTime(dayjs(ending_time));
+        setMinDateTime(dayjs(starting_time))
+        setMaxDateTime(dayjs(ending_time))
         
       } catch (error) {
           console.error(error);
@@ -121,7 +123,43 @@ const toTimeChange = (newValue) => {
   const isClassificationSelected = (classification) => {
     return selectedClassifications.includes(classification);
   };
+  const viewDataClick = () => {
+    const a=fromTime
+    const b=toTime
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://172.20.10.8:5000/api/data?",{
+          params: {
+            start_timestamp: a.format("YYYY-MM-DD HH:mm"),
+          end_timestamp: b.format("YYYY-MM-DD HH:mm"), 
+          },
+        });
+        console.log(response.data);
+        const transformedData = [];
 
+        response.data.forEach((item) => {
+        const timestamp = item.timestamps;
+        delete item.timestamps;
+
+        for (const key in item) {
+          transformedData.push({
+            timestamp,
+            [key]: item[key]
+          });
+        }
+      });
+
+    console.log(transformedData);
+    setData(transformedData)
+    setShowData(true)
+      } catch (error) {
+          console.error(error);
+      }
+        setLoading(false);
+      };
+  
+    fetchData();
+  }
 
 
   return (
@@ -133,30 +171,40 @@ const toTimeChange = (newValue) => {
         ))}
       <Grid container sx={{ marginTop: "30px", justifyContent:"center",alignItems:"center" }}>
         <Grid item sx={{ marginRight: "16px" }}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateTimePicker
-                                    label="Start Date"
-                                    value={fromTime}
-                                    onChange={fromTimeChange}
-                            
-                                    minDateTime={minDateTime}
-                                    maxDateTime={maxDateTime}
-                            />
-                            <DateTimePicker
-                                    label="End Date"
-                                    value={toTime}
-                                    onChange={toTimeChange}
-                                    
-                                    minDateTime={fromTime}
-                                    maxDateTime={maxDateTime}
-                            />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+            <DateTimePicker
+                    label="Start Date"
+                    value={fromTime}
+                    onChange={fromTimeChange}
+            
+                    minDateTime={minDateTime}
+                    maxDateTime={maxDateTime}
+            />
           </LocalizationProvider>
-        </Grid>
+          </Grid>
+          <Grid item sx={{ marginRight: "16px" }}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateTimePicker
+                      label="End Date"
+                      value={toTime}
+                      onChange={toTimeChange}
+                      
+                      minDateTime={fromTime}
+                      maxDateTime={maxDateTime}
+              />
+            </LocalizationProvider>
+          </Grid>
+          <Grid item>
+            <Button variant="contained" onClick={viewDataClick}>View Data</Button>
+          </Grid>
       </Grid>
-      
+    {showData&&(
     <Flex sx={{justifyContent:"center",alignItems:"center", width:"100%"}}>
       <Heatmap data={data} onOpen={onOpen}/>     
     </Flex>
+    )}
+   
     
     <ChakraProvider>
     {/* <Button onClick={onOpen}>Open Modal</Button> */}
