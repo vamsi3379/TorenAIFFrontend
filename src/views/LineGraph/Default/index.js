@@ -3,44 +3,46 @@ import Chart from "react-apexcharts";
 import { Flex, Grid } from "@chakra-ui/react";
 
 
-export default function Linegraph(data) {
-  console.log(data)
+export default function Linegraph(data, setTimeData) {
   console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$")
-  let timestaps = [];
   let rain = [];
   let people = [];
   let handbags = [];
   let cars = [];
-  let buildings = [];
-  for(let i=0;i<data.length;i++){
-    timestaps.push(data[i].x)
+  let buildings = []; //{buildings: '8.85', cars: '37.92', handbags: '0.00', people: '7.42', rain: '0.00'}
+  for(let i=0;i<data.data.length;i++){
+    rain.push(data.data[i].rain)
+    people.push(data.data[i].people)
+    handbags.push(data.data[i].handbags)
+    cars.push(data.data[i].cars)
+    buildings.push(data.data[i].buildings)
   }
 
   const options = {
     xaxis: {
-      categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      categories: data.timeData
     }
   };
   const series = [
     {
       name: "rain",
-      data: [30, 40, 25, 50, 49, 21, 70, 51]
+      data: rain
     },
     {
       name: "people",
-      data: [23, 12, 54, 61, 32, 56, 81, 19]
+      data: people
     },
     {
       name: "handbags",
-      data: [24, 20, 5, 75, 42, 79, 72, 35]
+      data: handbags
     },
     {
       name: "cars",
-      data: [24, 20, 5, 75, 42, 79, 72, 35]
+      data: cars
     },
     {
       name: "buildings",
-      data: [24, 20, 5, 75, 42, 79, 72, 35]
+      data: buildings
     }
   ];
 

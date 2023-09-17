@@ -27,9 +27,9 @@ const Renderer = ({
     };
   }, []);
 
-
+console.log("HeatMap",data)
   const width = availableWidth;
-  const height = 800 - MARGIN.top - MARGIN.bottom;
+  const height = 250 - MARGIN.top - MARGIN.bottom;
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 

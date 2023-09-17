@@ -37,191 +37,6 @@ import Linegraph from "../../LineGraph/Default"
 import Pagination from '@mui/material/Pagination';
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
-// const nCol = 20;
-// const nRow = 20;
-
-// const alphabet = [
-//   "A",
-//   "B",
-//   "C",
-//   "Df",
-//   "Edfvfdfsvdfvdvf",
-//   "F",
-//   "G",
-//   "H",
-//   "I",
-//   "J",
-//   "K",
-//   "L",
-//   "M",
-//   "N",
-//   "O",
-//   "Pwsdc,kmneww,md",
-// ];
-
-// let data = [];
-
-// for (let x = 0; x < nCol; x++) {
-//   for (let y = 0; y < nRow; y++) {
-//     data.push({
-//       x: alphabet[x],
-//       y: alphabet[y],
-//       value: Math.random() * 40
-//     });
-//   }
-// }
-// console.log(data)
-
-// const totalData = [
-//   {
-//     "buildings": "10",
-//     "cars": "50",
-//     "handbags": "0",
-//     "people": "31",
-//     "timestamps": "Mon, 11 Sep 2023 18:51:38 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "10",
-//     "timestamps": "Mon, 11 Sep 2023 18:52:39 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "13",
-//     "timestamps": "Mon, 11 Sep 2023 18:52:40 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "1",
-//     "timestamps": "Mon, 11 Sep 2023 18:56:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "100",
-//     "timestamps": "Mon, 11 Sep 2023 18:12:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "40",
-//     "timestamps": "Mon, 11 Sep 2023 18:54232:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "20",
-//     "timestamps": "Mon, 1132 Sep 2023 18:08:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "100",
-//     "timestamps": "Mon, 11 Sep 2023 18:234:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "10",
-//     "timestamps": "Mon, 11 Sep 2023 34:55:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "10",
-//     "timestamps": "Mon, 11 Sep 2023 18:43:40 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "50",
-//     "handbags": "0",
-//     "people": "31",
-//     "timestamps": "Mon, 11 Sep 2023 18:4432:38 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "10",
-//     "timestamps": "Mon, 11 Sep 2023 18:1`:39 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "13",
-//     "timestamps": "Mon, 11 Sep 2023 18:213:40 GMT",
-//     "umbrellas": "0"
-//   },
-//   {
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "1",
-//     "timestamps": "Mon, 11 Sep 2023 1`2:56:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "100",
-//     "timestamps": "Mon, 11 Sep 2023 18:123:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "40",
-//     "timestamps": "Mon, 11 Sep 2023 18:1232:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "20",
-//     "timestamps": "Mon, 11 Sep 2023 18:21:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "100",
-//     "timestamps": "Mon, 11 Sep 2023 18:32:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "10",
-//     "timestamps": "Mon, 11 Sep 2023 10:55:40 GMT",
-//     "umbrellas": "0"
-//   },{
-//     "buildings": "10",
-//     "cars": "51",
-//     "handbags": "0",
-//     "people": "10",
-//     "timestamps": "Mon, 11 Sep 2023 11:51:40 GMT",
-//     "umbrellas": "0"
-//   }
-// ];
 
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
@@ -234,6 +49,11 @@ const Dashboard = () => {
   const [data, setData] = React.useState([])
   const [showData, setShowData] = React.useState(true)
   const [preData, setPreData] = React.useState([])
+  const [timeData, setTimeData] = React.useState([])
+  const [pageNum, setPageNum] = React.useState(1);
+  const handlePageNum = (event, value) => {
+    setPageNum(value);
+  };
 
   const fromTimeChange = (newValue) => {
     setFromTime(dayjs(newValue))
@@ -250,7 +70,7 @@ const toTimeChange = (newValue) => {
 
         //output:{ending_time: '2023-09-11T21:25', starting_time: '2023-09-11T18:51'}
         const { starting_time, ending_time } = response.data;
-
+        console.log(starting_time)
         setFromTime(dayjs(starting_time));
         setToTime(dayjs(ending_time));
         setMinDateTime(dayjs(starting_time))
@@ -278,17 +98,22 @@ const toTimeChange = (newValue) => {
           end_timestamp: b.format("YYYY-MM-DD HH:mm"), 
           },
         });
+        
+        setPreData(response.data.slice(data.slice((pageNum-1)*50,pageNum*50)));
         console.log(response.data.length);
         const transformedData = [];
 
-        const totalData = response.data.slice(0,50)
-        setPreData(totalData);
+        const totalData = response.data
         
+        
+        let tempTimeData = []
 
 
         for (let i = 0; i < totalData.length; i++) {
           const timestamp = totalData[i].timestamps;
           const img_url = totalData[i].img_url;
+          
+          tempTimeData.push(timestamp)
           delete totalData[i].timestamps;
           delete totalData[i].img_url;
         
@@ -301,11 +126,15 @@ const toTimeChange = (newValue) => {
             });
           }
         }
+
+        setTimeData(tempTimeData)
   
 
     console.log(transformedData);
+    console.log("sjwkmd",transformedData.length)
+    console.log("ghi",transformedData)
     setData(transformedData)
-    setShowData(true)
+    setShowData(false)
       } catch (error) {
           console.error(error);
       }
@@ -353,17 +182,19 @@ const toTimeChange = (newValue) => {
             <Button variant="contained" onClick={viewDataClick}>View Data</Button>
           </Grid>
       </Grid>
-          {showData&&(
+          {!showData&&(
+            <>
             <Flex sx={{marginTop:"10px", justifyContent:"center",alignItems:"center", width:"100%"}}>
-              <Pagination count={4} showFirstButton showLastButton /> 
+              <Pagination count={Math.ceil(data.length/100)} page={pageNum} onChange={handlePageNum} showFirstButton showLastButton /> 
             </Flex>
+            </>
           )}
           
-          {showData&&(
+          {!showData&&(
             <>
         <Grid sx={{justifyContent:"center",alignItems:"center"}}>
           <Flex sx={{justifyContent:"center",alignItems:"center", width:"100%"}}>
-            <Heatmap data={data} onOpen={onOpen}/>     
+            <Heatmap data={data.slice((pageNum-1)*100,pageNum*100)} onOpen={onOpen}/>     
           </Flex>
         </Grid>
         </>
@@ -429,7 +260,8 @@ const toTimeChange = (newValue) => {
       </Modal>
     </ChakraProvider>
     </Grid>
-    <Linegraph data={preData}/>
+    {!showData && (<Linegraph data={preData} timeData={timeData}/>)}
+    
     </>
   );
 };

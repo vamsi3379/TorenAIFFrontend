@@ -28,14 +28,6 @@ const dashboard = {
       breadcrumbs: false
     },
     {
-      id: 'graphs-line',
-      title: 'Line Plot',
-      type: 'item',
-      url: '/lineplot',
-      icon: icons.IconChartAreaLine,
-      breadcrumbs: false
-    },
-    {
       id: 'graphs-pie',
       title: 'Pie Plot',
       type: 'item',

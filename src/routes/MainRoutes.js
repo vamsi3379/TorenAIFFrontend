@@ -46,10 +46,6 @@ const MainRoutes = {
       element: <DashboardScatter />
     },
     {
-      path: '/lineplot',
-      element: <DashboardLine />
-    },
-    {
       path: '/pieplot',
       element: <DashboardPie />
     },
