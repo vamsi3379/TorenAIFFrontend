@@ -28,14 +28,6 @@ const dashboard = {
       breadcrumbs: false
     },
     {
-      id: 'graphs-pie',
-      title: 'Pie Plot',
-      type: 'item',
-      url: '/pieplot',
-      icon: icons.IconChartCircles,
-      breadcrumbs: false
-    },
-    {
       id: 'table-data',
       title: 'Table',
       type: 'item',

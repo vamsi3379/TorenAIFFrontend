@@ -50,7 +50,9 @@ const Dashboard = () => {
   const [showData, setShowData] = React.useState(true)
   const [preData, setPreData] = React.useState([])
   const [timeData, setTimeData] = React.useState([])
-  const [pageNum, setPageNum] = React.useState(1);
+  const [imgData, setImgData] = React.useState([])
+  const [pageNum, setPageNum] = React.useState(1) 
+
   const handlePageNum = (event, value) => {
     setPageNum(value);
   };
@@ -107,6 +109,7 @@ const toTimeChange = (newValue) => {
         
         
         let tempTimeData = []
+        let tempImgData = []
 
 
         for (let i = 0; i < totalData.length; i++) {
@@ -114,6 +117,7 @@ const toTimeChange = (newValue) => {
           const img_url = totalData[i].img_url;
           
           tempTimeData.push(timestamp)
+          tempImgData.push(img_url)
           delete totalData[i].timestamps;
           delete totalData[i].img_url;
         
@@ -128,6 +132,7 @@ const toTimeChange = (newValue) => {
         }
 
         setTimeData(tempTimeData)
+        setImgData(tempImgData)
   
 
     console.log(transformedData);
@@ -220,7 +225,8 @@ const toTimeChange = (newValue) => {
             <Flex justifyContent="center" alignItems="center">
             <Image
               boxSize="550px"
-              src="https://thistlesourcing.com/wp-content/uploads/2022/08/automotive-annotation.jpg"
+              // src="https://thistlesourcing.com/wp-content/uploads/2022/08/automotive-annotation.jpg"
+              src={imgData[Math.floor(Math.random() * imgData.length)]}
               alt="CC TV frame"
             />
             </Flex>
